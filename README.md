@@ -1,48 +1,46 @@
 # Bike-Sharing-Demand-Prediction
 
+## Description: 
 
-## Description:
+Currently Rental bikes are introduced in many urban cities for the enhancement of mobility comfort. It is important to make the rental bike available and accessible to the public at the right time as it lessens the waiting time. Eventually, providing the city with a stable supply of rental bikes becomes a major concern.
+The dataset contains weather information (Temperature, Humidity, Windspeed, Visibility, Dewpoint, Solar radiation, Snowfall, Rainfall), the number of bikes rented per hour and date information.
 
-Prediction of bankruptcy is a phenomenon of increasing interest to firms who stand to lose money because on unpaid debts. Since computers can store huge dataset pertaining to bankruptcy making accurate predictions from them before hand is becoming important.
-The data were collected from the Taiwan Economic Journal for the years 1999 to 2009. Company bankruptcy was defined based on the business regulations of the Taiwan Stock Exchange.
-In this project, we have used various classification algorithms varying from Logistic Regression till CATBoost, and their accuracy metrics have been plotted simultaneously.
-
-## Execution:
-
-### Dataset: 
+### Dataset : 
 https://www.kaggle.com/c/bike-sharing-demand
 
-### Data cleaning:
+## Execution: 
 
-For the First step, the data is imported from a csv file and converted to a panda’s DataFrame. Pandas is inbuilt library in python that is used in handling and manipulating Dataframes. Dataframe is basically collection of Rows and Columns. 
-Once the data is clean, we check for the statistics of the cleaned data. The statistics of the data tells us the mean, median and the distribution of the data and some more info. Also, we checked for any null values and duplicate values in the whole dataset and for our surprise, we didn’t find neither any null nor duplicate values.
+For the First step, the data is imported from a csv file and converted to a  panda’s DataFrame . Pandas is inbuilt library in python that is used in handling and manipulating Dataframes. Dataframe is basically collection of Rows and Columns. 
+Once the data is clean, we check for the statistics of the cleaned data. The statistics of the data tells us the mean, median and the distribution of the data and some more info. 
+
+## Data Visualizations:
+
 After the data is cleaned, Visualizations can be done on the data and inferences can be noted. 
+One such visualization is to find the correlation between the variables and found out that Temperature and Dew point Temperature are highly correlated and dew point has to be deleted from the DataFrame.
+Another such visualizations is to find out what are the months in which the people in seoul like to drive the rented bicycles. Plotting that we found that people like driving more in summers than in any other weather.
+Similarly, we can plot the frequency of bikes rented to the hour of the day and found out that there is a significant increase in the number of rents at 08:00 in the morning and 18:00 in the evening. So, we can infer that people using the rented bikes are mostly office going people. 
+Also, we plotted the number of rented bikes according to the weekday and find out that most of the traffic is on weekdays and least on Sunday.
+Similarly, by plotting the temperatures in which people like to ride the bikes to find out that the sweet spot of temperature for riding is around 25 degrees Celsius.
+Also, by plotting the time of day (day or night) in which the riders prefer riding, to find out that more than 75% rides happen in daytime and the rest in night time.
 
-### Visualizations:
+Another such Visualization is plotting amount of rainfall and snowfall in which riders are found renting the bikes most and found out that people are found riding in very less to nil rainfall and snowfalls.
 
-One such visualization is to find the correlation between the variables. Plotting the correlation between variables is not visually appealing as there are 65 different variables. But we see some red squared in between that says they are highly correlated. 
-As the target variable is categorical i.e., Bankrupt or not, plotting this variable we find out that around 97% of the data present is of financially stable and the rest is financially unstable.
-Similarly, we can plot the Boxplot of Correlations between the variables and also feature distributions for close to bankruptcy companies.
-After all this, we remove the outliers. Outlier is a data point that is present very far away from the mean of the distribution of the data. There is a set procedure to remove the outliers. And once the outliers are scaped of, The Boxplot distribution is plotted once again to find out that most of the outliers are removed.
-Then, we perform a Log (Logarithmic) transformation on the data, the log transformation is performed in the data to remove any skewness present in the data and produce an approximate log-normal distribution. After the log transformation has been performed, we see a approximation of normal distributions in our dataset.
+## data modelling: 
 
-### Data modelling:
+Coming to the second part, which is Data Modelling in which we try out different Supervised Machine Learning Regressor algorithms fits the best to our dataset and gives us the best accuracy (R2 scores).
+Starting with a primitive Regressor Algorithm as Multiple Linear regression and fitting it to our dataset to find out that, this algorithm doesn’t give us satisfactory results as the R2 score for testing and training datasets is around 47%. So, we end up discarding this model and look onto new models.
+Next, we take on lasso and Ridge Regression Algorithms. The main idea behind Ridge Regression is to find a new line that doesn’t fit the training data. Fitting this on our dataset to found that the accuracy results were not so pleasing with R2 score around 48%. Same is the case with Lasso Regression.
+Let’s look onto next Algorithm “Decision Tree Regression”. Decision Tree Regressor is fairly complex algorithm when compared to Linear Regression models. Coming to the R2 scores, fairly appealing with R2 scores around 67% on training and testing datasets.
 
-Coming to the second part, which is Data Modelling in which we try out different Supervised Machine Learning Classification algorithms fits the best to our dataset and gives us the best accuracy scores like precision, Recall, AOC-ROC curve, Accuracy and so on
-Starting with a primitive Logistic Regression, Logistic regression is a statistical model that in its basic form uses a logistic Function to model a binary dependent variable, although many more complex extensions exist. After we apply Logistic regression to our model, the overall accuracy scores were 0.89 and f1-scores of 0.94 and the AOC-ROC score of 0.83
-Next, we take on Random Forest Classifier algorithm. Random Forest being a much more complex algorithm produces better results. Providing an overall accuracy of 0.95, f1-score of 0.97 and finally AOC-ROC score of 0.70
-Let’s look onto next Algorithm XGBOOST. XGBoost is an implementation of gradient boosted decision trees designed for speed and performance. XGBoost is a decision-tree-based ensemble Machine Learning algorithm that uses a gradient boosting framework. Coming to its accuracy scores, overall accuracy score of 0.95, and a f1-score of 0.97 and AOC score of 0.66
+Last but not the least, Random Forest Regressor which is a tad more complex than Decision Tree and hence, we could expect more accurate results. Confirming on our Expectation the accuracy results are slightly better than Decision tree Regressor, with training R2 scores of 79% and testing scores of 75%.
 
-Last on our list is the CATBoost, CATBoost is a member of the family of GBDT (Gradient Boosted Decision Tree) machine learning ensemble techniques. Moving on to its accuracy metrics, total average accuracy comes up to 
+Coming to our last regressor, Extra trees regressor. As it is the most complex of all our previous models and hence has the best results in the lot. The R2 scores for Training dataset are 80% and the score for testing dataset is 76%, Which is the best performance we saw in all of our regressor algorithms. 
 
-Coming to our last regressor, Extra trees regressor. As it is the most complex of all our previous models and hence has the best results in the lot. The R2 scores for Training dataset are 80% and the score for testing dataset is 76%, Which is the best performance we saw in all of our regressor algorithms. 0.93, f1-score of 0.97 and ROC score of 0.76
+## Conclusion:
 
-### Conclusion: 
-
-Concluding, according to the f1-scores and the Accuracy metrics, CATBoosT is the best metric to choose for further predictions. According to AOC-ROC, Logistic Regression stands first with a score of 0.86 Nevertheless, in this case, the best decision is to use Logistic regression because it can better recognize the minority class even misclassifying some not close to bankruptcy companies as close to bankruptcy.Also, the parameters that contribute to bankruptcy of a company are also external such as decisions taken by the CEO of the company and dwindling workforce and so on, which can neither be calculated nor predicted.
+Concluding, We choose to go ahead with Extra Tree Regressor as it had the best performance and R2 scores.
 
 
-## Credits and References:
-  1. https://towardsdatascience.com/end-to-end-case-study-bike-sharing-demand-dataset-53201926c8db
-  2. https://anindya-saha.github.io/blog/machine-learning-with-python/kaggle-bike-sharing-demand/kaggle-bike-sharing-demand.html
-
+### References: 
+  1. https://anindya-saha.github.io/blog/machine-learning-with-python/kaggle-bike-sharing-demand/kaggle-bike-sharing-demand.html
+  2. https://towardsdatascience.com/end-to-end-case-study-bike-sharing-demand-dataset-53201926c8db
