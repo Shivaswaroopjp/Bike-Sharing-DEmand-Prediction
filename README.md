@@ -1,4 +1,4 @@
-# Bike-Sharing-DEmand-Prediction
+# Bike-Sharing-Demand-Prediction
 
 
 ## Description:
